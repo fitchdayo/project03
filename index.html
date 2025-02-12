@@ -43,8 +43,7 @@
       </div>
       <div class="flex gap-4 pt-[20px] items-center" id="responseButtons">
         <button id="nextButton"
-          class="bounce2 inline-flex items-center justify-center whitespace-nowrap rounded-md text-[20px] font-medium disabled:pointer-events-none disabled:opacity-50 hover:bg-blue-400 min-h-12 min-w-[100px] px-4 py-2 bg-blue-500 text-white transition"
-          disabled>
+          class="bounce2 inline-flex items-center justify-center whitespace-nowrap rounded-md text-[20px] font-medium disabled:pointer-events-none disabled:opacity-50 hover:bg-blue-400 min-h-12 min-w-[100px] px-4 py-2 bg-blue-500 text-white transition">
           Next
         </button>
       </div>
@@ -96,12 +95,12 @@
     }
 
     nextButton.addEventListener('click', function () {
-      // Disable the button when clicked
-      nextButton.disabled = true;
-
       // Make the main question disappear with a fade effect
       mainQuestion.style.opacity = 0;
       mainQuestion.style.transition = "opacity 1s";
+
+      // Disable the Next button after the first click (for first question onward)
+      nextButton.disabled = true;
 
       // Proceed to next message
       if (clickCount < messages.length) {
@@ -152,9 +151,6 @@
               imageDisplay.style.display = 'block';
               videoDisplay.style.display = 'none';
             }
-
-            // Enable the next button after the second question appears
-            nextButton.disabled = false;
           }, 2000); // 2-second pause before showing the second message
         }
       }
@@ -162,6 +158,11 @@
       if (clickCount >= messages.length) {
         nextButton.style.display = 'none'; // Hide the button after the last message
       }
+
+      // Re-enable the button after a delay (after the first question and before second)
+      setTimeout(() => {
+        nextButton.disabled = false;
+      }, 2000); // Re-enable after a 2-second delay (to allow transition time)
     });
   </script>
 </body>
