@@ -39,6 +39,7 @@
       <div class="text-center">
         <h2 id="firstQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4" style="opacity: 0;"></h2>
         <h2 id="secondQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4" style="opacity: 0;"></h2>
+        <h2 id="mainQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4" style="opacity: 0;"></h2> <!-- Main Question -->
       </div>
       <div class="flex gap-4 pt-[20px] items-center" id="responseButtons">
         <button id="nextButton"
@@ -55,6 +56,7 @@
     const videoDisplay = document.getElementById('videoDisplay');
     const firstQuestion = document.getElementById('firstQuestion');
     const secondQuestion = document.getElementById('secondQuestion');
+    const mainQuestion = document.getElementById('mainQuestion'); // Main question element
 
     let clickCount = 0;
 
@@ -78,6 +80,14 @@
       "./animation.gif.mp4", // Path for the 12th message
       "./animation.gif.mp4"  // Path for the 13th message
     ];
+
+    // Set initial main question to be shown immediately
+    mainQuestion.textContent = "Test test";
+    mainQuestion.style.opacity = 0;
+    mainQuestion.style.transition = "opacity 1s";
+    setTimeout(() => {
+      mainQuestion.style.opacity = 1;
+    }, 50); // Display main question with fade-in effect
 
     nextButton.addEventListener('click', function () {
       if (clickCount < messages.length) {
