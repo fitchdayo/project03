@@ -37,9 +37,10 @@
       <video id="videoDisplay" class="rounded-md h-[300px]" style="object-fit: cover; display: none;" autoplay muted loop></video>
       <img id="imageDisplay" src="" alt="" class="rounded-md h-[300px]" style="object-fit: cover;" />
       <div class="text-center">
-        <h2 id="mainQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4" style="opacity: 1;">Main Question</h2>
+        <h2 id="mainQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4" style="opacity: 1;">Benefits if you have me</h2>
         <h2 id="firstQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4" style="opacity: 0;"></h2>
         <h2 id="secondQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4" style="opacity: 0;"></h2>
+        <h2 id="thirdQuestion" class="text-4xl font-bold italic text-[#bd1e59] my-4" style="opacity: 0;"></h2>
       </div>
       <div class="flex gap-4 pt-[20px] items-center" id="responseButtons">
         <button id="nextButton"
@@ -57,12 +58,13 @@
     const mainQuestion = document.getElementById('mainQuestion');
     const firstQuestion = document.getElementById('firstQuestion');
     const secondQuestion = document.getElementById('secondQuestion');
+    const thirdQuestion = document.getElementById('thirdQuestion');
 
     let clickCount = 0;
 
     // The messages array with pairs of first and second questions
     const messages = [
-      { first: "Are you really S?", second: "Eh? Hontou? Hontou hontou??" },
+      { first: "I am tech support", second: "I can solve all your tech issue and help ou out if need to so you have zero issues :D", third: "BONUS: I CAN BUILD KB FOR YOU" },
       { first: "Ah I see.. Ok can u press next please :x", second: "Firstly, I'm sorry for this :x" },
       { first: "But I would like to say, I'm very thankful to have met you", second: "You have helped me a lot during my dark times with just your VA works.. :3" },
       { first: "Thank you for always making everyone feel safer with your work", second: "Lastly.." },
@@ -138,6 +140,10 @@
             secondQuestion.style.transition = "opacity 1s";
             setTimeout(() => {
               secondQuestion.style.opacity = 1;
+            }, 50);
+            setTimeout(() => {
+              thirdQuestion.textContent = third;
+              thirdQuestion.style.opacity = 1;
             }, 50);
 
             // Display the second message's image or video
